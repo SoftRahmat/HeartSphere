@@ -1,0 +1,56 @@
+/* Heart Sphere Styles */
+
+/* Style for the Title */
+h1 {
+  font-size: 2.5rem; /* Large title size */
+  font-weight: bold;
+  color: #4a90e2; /* A calm blue color */
+  text-align: center; /* Centered text */
+  margin-bottom: 1.5rem;
+}
+
+/* Style for the Material List Container */
+mat-list {
+  display: flex;
+  flex-direction: column;
+  background-color: #f9f9f9; /* Light gray background */
+  border: 1px solid #ddd; /* Subtle border */
+  border-radius: 8px; /* Rounded corners */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Light shadow for depth */
+  padding: 1rem;
+  margin: 0 auto; /* Center the list */
+  max-width: 600px; /* Limit the width */
+}
+
+/* Style for List Items */
+mat-list-item {
+  display: flex;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid #e0e0e0; /* Divider between items */
+  transition: background-color 0.3s;
+
+  &:hover {
+    background-color: #f0f8ff; /* Light blue on hover */
+  }
+
+  &:last-child {
+    border-bottom: none; /* Remove border for the last item */
+  }
+}
+
+/* Style for User Information */
+p {
+  font-size: 1rem; /* Regular font size */
+  color: #333; /* Dark text color for readability */
+  margin: 0; /* Remove default margins */
+  word-break: break-word; /* Break long text gracefully */
+}
+
+/* Add some spacing for dynamic ID and username */
+mat-list-item p {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  font-weight: 500; /* Slightly bold for emphasis */
+}

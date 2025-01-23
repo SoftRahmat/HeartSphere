@@ -1,0 +1,11 @@
+html,
+body {
+  font-family: 'Plus Jakarta Sans';
+  height: 100%;
+  margin: 0;
+  scroll-behavior: smooth;
+  color: #00263f;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  font-size: clamp(12px, 0.8rem + 0.25vw, 22px);
+}

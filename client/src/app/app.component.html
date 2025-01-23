@@ -1,0 +1,8 @@
+<h1>{{title}}</h1>
+<mat-list>
+  @for (user of users; track user.id) {
+    <mat-list-item>
+      <p> {{user.id}} - {{user.userName}}</p>
+    </mat-list-item>
+  }
+</mat-list>
