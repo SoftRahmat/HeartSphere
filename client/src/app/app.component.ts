@@ -1,26 +1,31 @@
-import { HttpClient } from '@angular/common/http';
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, Inject, inject, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import {MatListModule} from '@angular/material/list';
+import { MatListModule} from '@angular/material/list';
+import { NavbarComponent } from "./navbar/navbar.component";
+import { AccountService } from './_services/account.service';
+import { HomeComponent } from "./home/home.component";
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, MatListModule],
+  imports: [RouterOutlet, MatListModule, NavbarComponent, HomeComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
 export class AppComponent implements OnInit {
-  _http: HttpClient = inject(HttpClient);
+  private _accountService = Inject(AccountService);
   title: string = 'Heart Sphere';
   users: any = {};
 
-
   ngOnInit(): void {
-    this._http.get('https://localhost:5001/api/users').subscribe({
-      next: res=> { this.users = res },
-      error: error => console.log(error),
-      complete: () => console.log('Request completed successfully')
-    })
+    this.setCurrentUser();
+  }
+
+  setCurrentUser(): void {
+    const userString = localStorage.getItem('user');
+
+    if (!userString) return;
+    const user = JSON.parse(userString);
+    this._accountService.currentUser.set(user);
   }
 }

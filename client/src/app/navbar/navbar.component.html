@@ -1,0 +1,67 @@
+<nav class="navbar navbar-expand-lg navbar-light fixed-top shadow-sm">
+  <div class="container">
+    <!-- Brand/Logo -->
+    <a class="navbar-brand" href="#">
+      <img src="assets/heart.png" alt="Heart Sphere" width="30" height="30" class="d-inline-block align-top" />
+      Heart Sphere
+    </a>
+
+    <!-- Toggler for Mobile View -->
+    <!-- <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarNav"
+      aria-controls="navbarNav"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button> -->
+
+    <!-- Navbar Links -->
+    @if (_accountService.currentUser()) {
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link active">Matches</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link">Lists</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link">Messages</a>
+          </li>
+        </ul>
+      </div>
+    }
+
+    @if (_accountService.currentUser()) {
+      <div dropdown class="dropdown">
+        <a dropdownToggle class="dropdown-toggle text-black text-decoration-none">Welcome User</a>
+        <div *dropdownMenu class="dropdown-menu">
+          <a class="dropdown-item">Edit Profile</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" (click)="logout()">Logout</a>
+        </div>
+      </div>
+    }
+
+    @if (!_accountService.currentUser()) {
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="d-flex" autocomplete="off">
+        <input 
+          class="form-control me-2" 
+          placeholder="Username"
+          formControlName="userName"
+        >
+        <input
+          class="form-control me-2"
+          placeholder="Password"
+          type="password"
+          formControlName="password"
+        >
+        <button mat-button class="login-btn" type="submit">Login</button>
+      </form>
+    }
+  </div>
+</nav>
