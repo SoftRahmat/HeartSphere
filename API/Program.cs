@@ -1,23 +1,30 @@
-using API.Data;
-using Microsoft.EntityFrameworkCore;
+using API.Extensions;
 
-var builder = WebApplication.CreateBuilder(args);
+var builder = WebApplication.CreateBuilder(args); // Create a builder for configuring the application
 
 // Add services to the container.
-builder.Services.AddControllers();
-builder.Services.AddDbContext<DataContext>(opt => 
-{
-  opt.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection"));
-});
+builder.Services.AddApplicationServices(builder.Configuration);
+builder.Services.AddIdentityServices(builder.Configuration);
 
-builder.Services.AddCors();
+var app = builder.Build(); // Build the application
 
-var app = builder.Build();
 // Configure the HTTP request pipeline.
+// Enable CORS for specific origins and allow any header/method
 app.UseCors(x => x.AllowAnyHeader()
   .AllowAnyMethod()
   .WithOrigins("http://localhost:4300", "https://localhost:4300"));
 
+// Add authentication middleware to the request pipeline
+// Ensures that the application processes authentication for incoming requests
+app.UseAuthentication();
+
+// Add authorization middleware to the request pipeline
+// Ensures that the application processes authorization for incoming requests, 
+// verifying user permissions based on roles or policies
+app.UseAuthorization();
+
+// Map controller endpoints to the request pipeline
 app.MapControllers();
 
+// Run the application
 app.Run();
