@@ -1,6 +1,6 @@
 /* Navbar Styling */
 .navbar {
-  background-color: #f5d59a;
+  background-color: #ffc629;
   border-bottom: 1px solid #ddd; /* Subtle border */
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Light shadow */
 }
@@ -52,6 +52,11 @@
 
 .login-btn:hover {
   background-color: #154c79 !important; /* Slightly darker blue */
+}
+
+.disabled {
+  background-color: #555555 !important;
+  cursor: not-allowed !important;
 }
 
 .dropdown-toggle .dropdown-item {

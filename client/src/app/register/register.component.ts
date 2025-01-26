@@ -6,6 +6,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { AccountService } from '../_services/account.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-register',
@@ -25,7 +26,11 @@ export class RegisterComponent implements OnInit {
   signupForm: FormGroup = new FormGroup({});
   error: string = '';
 
-  constructor(private fb: FormBuilder, private _accountService: AccountService) {}
+  constructor(
+    private fb: FormBuilder,
+    private _accountService: AccountService,
+    private _toaster: ToastrService,
+  ) {}
 
   ngOnInit(): void {
     this.initForm();
@@ -51,11 +56,11 @@ export class RegisterComponent implements OnInit {
 
     this._accountService.register(payload).subscribe({
       next: res => {
-        console.log(res);
         this.cancel();
       },
       error: err => {
         this.error = err.error;
+        this._toaster.error(err.error);
       }
     });
   }

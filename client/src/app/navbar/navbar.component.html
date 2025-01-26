@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg navbar-light fixed-top shadow-sm">
   <div class="container">
     <!-- Brand/Logo -->
-    <a class="navbar-brand" href="#">
+    <a class="navbar-brand" routerLink="/" routerLinkActive="active">
       <img src="assets/heart.png" alt="Heart Sphere" width="30" height="30" class="d-inline-block align-top" />
       Heart Sphere
     </a>
@@ -20,25 +20,27 @@
     </button> -->
 
     <!-- Navbar Links -->
-    @if (_accountService.currentUser()) {
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav">
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        @if (_accountService.currentUser()) {
           <li class="nav-item">
-            <a class="nav-link active">Matches</a>
+            <a class="nav-link" routerLink="/members" routerLinkActive="active">Matches</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link">Lists</a>
+            <a class="nav-link" routerLink="/lists" routerLinkActive="active">Lists</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link">Messages</a>
+            <a class="nav-link" routerLink="/messages" routerLinkActive="active">Messages</a>
           </li>
-        </ul>
-      </div>
-    }
+        }
+      </ul>
+    </div>
 
     @if (_accountService.currentUser()) {
       <div dropdown class="dropdown">
-        <a dropdownToggle class="dropdown-toggle text-black text-decoration-none">Welcome User</a>
+        <a dropdownToggle class="dropdown-toggle text-black text-decoration-none">
+          Welcome {{ _accountService.currentUser()?.username | titlecase}}
+        </a>
         <div *dropdownMenu class="dropdown-menu">
           <a class="dropdown-item">Edit Profile</a>
           <div class="dropdown-divider"></div>
@@ -60,7 +62,15 @@
           type="password"
           formControlName="password"
         >
-        <button mat-button class="login-btn" type="submit">Login</button>
+        <button
+          mat-button
+          class="login-btn"
+          type="submit"
+          [ngClass]="{ 'disabled': loginForm.invalid }"
+          [disabled]="loginForm.invalid"
+        >
+          Login
+        </button>
       </form>
     }
   </div>
