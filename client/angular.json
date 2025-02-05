@@ -32,8 +32,9 @@
             "styles": [
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "node_modules/font-awesome/css/font-awesome.min.css",
-              "src/styles.scss",
-              "node_modules/ngx-toastr/toastr.css"
+              "node_modules/ngx-toastr/toastr.css",
+              "node_modules/bootswatch/dist/quartz/bootstrap.min.css",
+              "src/styles.scss"
             ],
             "scripts": []
           },

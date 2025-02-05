@@ -1,47 +1,39 @@
 <div class="signup-container">
-  <h1 class="signup-title">Sign up</h1>
+  <h1 class="text-center text-secondary">Sign up</h1>
 
   <form [formGroup]="signupForm" (ngSubmit)="onSubmit()" class="signup-form">
-    <mat-form-field class="form-field">
-      <input
-        matInput
+    <div class="mb-3 form-floating">
+      <input 
+        type="text"
+        class="form-control"
+        name="username"
         formControlName="username"
         placeholder="Username"
-        required
-      />
-      <mat-error *ngIf="signupForm.get('username')?.hasError('required')">
-        Username is required
-      </mat-error>
-      <mat-error *ngIf="signupForm.get('username')?.hasError('minlength')">
-        Minimum 4 characters required
-      </mat-error>
-    </mat-form-field>
-
-    <mat-form-field class="form-field">
-      <input
-        matInput
+      >
+      <label>Username</label>
+    </div>
+    <div class="mb-3 form-floating">
+      <input 
         type="password"
+        class="form-control"
+        name="password"
         formControlName="password"
         placeholder="Password"
-        required
-      />
-      <mat-error *ngIf="signupForm.get('password')?.hasError('required')">
-        Password is required
-      </mat-error>
-      <mat-error *ngIf="signupForm.get('password')?.hasError('minlength')">
-        Minimum 6 characters required
-      </mat-error>
-    </mat-form-field>
+      >
+      <label>Password</label>
+    </div>
 
     <mat-error class="mb-3" *ngIf="error !== ''">
       {{ error }}
     </mat-error>
-    <button mat-raised-button color="primary" type="submit" [disabled]="signupForm.invalid">
-      Register
-    </button>
-    <button mat-raised-button color="primary" type="cancel" (click)="cancel()">
-      Cancel
-    </button>
+    <div class="form-group text-center">
+      <button mat-raised-button color="primary" type="submit" [disabled]="signupForm.invalid">
+        Register
+      </button>
+      <button mat-raised-button color="primary" type="cancel" (click)="cancel()">
+        Cancel
+      </button>
+    </div>
   </form>
 </div>
 

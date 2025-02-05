@@ -1,4 +1,5 @@
 using API.Extensions;
+using API.Middleware;
 
 var builder = WebApplication.CreateBuilder(args); // Create a builder for configuring the application
 
@@ -10,6 +11,7 @@ var app = builder.Build(); // Build the application
 
 // Configure the HTTP request pipeline.
 // Enable CORS for specific origins and allow any header/method
+app.UseMiddleware<ExceptionMiddleware>();
 app.UseCors(x => x.AllowAnyHeader()
   .AllowAnyMethod()
   .WithOrigins("http://localhost:4300", "https://localhost:4300"));
